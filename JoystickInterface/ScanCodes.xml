@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<scancodes>
+  <scancode key="1" value="2 "/>
+  <scancode key="2" value="3 "/>
+  <scancode key="3" value="4 "/>
+  <scancode key="4" value="5 "/>
+  <scancode key="5" value="6 "/>
+  <scancode key="6" value="7 "/>
+  <scancode key="7" value="8 "/>
+  <scancode key="8" value="9 "/>
+  <scancode key="9" value="10"/>
+  <scancode key="0" value="11"/>
+  <scancode key="Q" value="16"/>
+  <scancode key="W" value="17"/>
+  <scancode key="E" value="18"/>
+  <scancode key="R" value="19"/>
+  <scancode key="T" value="20"/>
+  <scancode key="Y" value="21"/>
+  <scancode key="U" value="22"/>
+  <scancode key="I" value="23"/>
+  <scancode key="O" value="24"/>
+  <scancode key="P" value="25"/>
+  <scancode key="A" value="30"/>
+  <scancode key="S" value="31"/>
+  <scancode key="D" value="32"/>
+  <scancode key="F" value="33"/>
+  <scancode key="G" value="34"/>
+  <scancode key="H" value="35"/>
+  <scancode key="J" value="36"/>
+  <scancode key="K" value="37"/>
+  <scancode key="L" value="38"/>
+  <scancode key="Z" value="44"/>
+  <scancode key="X" value="45"/>
+  <scancode key="C" value="46"/>
+  <scancode key="V" value="47"/>
+  <scancode key="B" value="48"/>
+  <scancode key="N" value="49"/>
+  <scancode key="M" value="50"/>
+</scancodes>
