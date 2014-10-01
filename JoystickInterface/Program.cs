@@ -56,17 +56,20 @@ namespace JoystickInterface
                 var currentNotch = (int)(data.Y / notch);
 
                 ushort key;
+                int numberOfTimes;
 
                 if (currentNotch > lastNotch)
                 {
                     Console.WriteLine("Send Down");
                     key = down;
+                    numberOfTimes = currentNotch - lastNotch;
                     lastNotch = currentNotch;
                 }
                 else if (currentNotch < lastNotch)
                 {
                     Console.WriteLine("Send Up");
                     key = up;
+                    numberOfTimes = lastNotch - currentNotch;
                     lastNotch = currentNotch;
                 }
                 else
@@ -80,6 +83,25 @@ namespace JoystickInterface
                     continue;
                 }
 
+                pressKey(key, numberOfTimes);
+
+            }
+// ReSharper disable FunctionNeverReturns
+        }
+// ReSharper restore FunctionNeverReturns
+
+        static void getScanCodes()
+        {
+            var xDoc = XDocument.Parse(File.ReadAllText("ScanCodes.xml"));
+            down = ushort.Parse(xDoc.Root.Elements().FirstOrDefault(e => e.Attribute("key").Value.ToString().Equals(ConfigurationManager.AppSettings["Down"], StringComparison.OrdinalIgnoreCase)).Attribute("value").Value);
+            up = ushort.Parse(xDoc.Root.Elements().FirstOrDefault(e => e.Attribute("key").Value.ToString().Equals(ConfigurationManager.AppSettings["Up"], StringComparison.OrdinalIgnoreCase)).Attribute("value").Value);
+        }
+
+        static void pressKey(ushort key, int numberOfTimes)
+        {
+            while (numberOfTimes != 0)
+            {
+                Thread.Sleep(30);
                 var InputData = new INPUT[1];
 
                 InputData[0].type = 1;
@@ -103,19 +125,10 @@ namespace JoystickInterface
                 InputData[0].dwExtraInfo = UIntPtr.Zero;
 
                 SendInput(1, InputData, Marshal.SizeOf(typeof(INPUT)));
-
+                numberOfTimes--;
             }
-// ReSharper disable FunctionNeverReturns
+            
         }
-// ReSharper restore FunctionNeverReturns
-
-        static void getScanCodes()
-        {
-            var xDoc = XDocument.Parse(File.ReadAllText("ScanCodes.xml"));
-            down = ushort.Parse(xDoc.Root.Elements().FirstOrDefault(e => e.Attribute("key").Value.ToString().Equals(ConfigurationManager.AppSettings["Down"], StringComparison.OrdinalIgnoreCase)).Attribute("value").Value);
-            up = ushort.Parse(xDoc.Root.Elements().FirstOrDefault(e => e.Attribute("key").Value.ToString().Equals(ConfigurationManager.AppSettings["Up"], StringComparison.OrdinalIgnoreCase)).Attribute("value").Value);
-        }
-
 
 
 
